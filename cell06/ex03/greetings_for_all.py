@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-def greetings(a):
-    if len(a)==0:
-        return "Hello, noble stranger."
+def greetings(a=None):
+    if a == None or isinstance(a,str) and len(a) != 0:
+        print(f"Hello, {a}.")
     elif not isinstance(a,str):
-        return f"Hello, {a}."
-    else:
-        return "Error! It was not a name."
+        print("Error! It was not a name.")
+    else: 
+        print("Hello, noble stranger.")
 
 greetings('Alexandra')
 greetings('Wil')
