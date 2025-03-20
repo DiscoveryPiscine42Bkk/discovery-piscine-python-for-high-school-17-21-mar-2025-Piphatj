@@ -4,6 +4,8 @@ def checkmate(board):
     rows = board.splitlines()
     king_pos = None
     check=0
+    k=0
+
     for i in range(len(rows)):
         if 'K' in rows[i]:
             king_pos = (i, rows[i].index('K'))
@@ -11,12 +13,14 @@ def checkmate(board):
             break
     
     if not king_pos:
-        return  # No King found, nothing to check
+        print("ksmall")
+
     bishop_loca=None
     queen_loca=None
     pawn_loca=None
     rook_loca=None
-    king_row, king_col = king_pos
+    if king_pos !=None:
+        king_row, king_col = king_pos
     for i in range(len(rows)):
         if 'P' in rows[i]:
             pawn_loca=(i, rows[i].index('P'))
@@ -32,7 +36,10 @@ def checkmate(board):
     for i in range(len(rows)):
         if 'Q' in rows[i]:
             queen_loca=(i,rows[i].index('Q'))
-            
+    for i in range(len(rows)):
+        k += rows[i].count('K') 
+    
+    
     
 
     def pawn(pawn_loca):
@@ -410,43 +417,66 @@ def checkmate(board):
         return check_q
 
 
+    c=0
+    for i in range(0,len(rows)):
+        
+        if len(rows[i])!=len(rows[0]):
+            c+=1
+    
 
-    for i in range(len(rows)):
-        if 'P' in rows[i]:
-            pawn(pawn_loca)
-    for j in range(len(rows)):
-        if 'B' in rows[j]:
-            bishop(bishop_loca)
-    for i in range(len(rows)):
-        if 'R' in rows[i]:
-            rook(rook_loca)
-    for i in range(len(rows)):
-        if 'Q' in rows[i]:
-            queen(queen_loca)
 
-    if pawn_loca!=None:
-        n1=pawn(pawn_loca)
-    else:
-        n1=0
 
-    if bishop_loca!=None:
-        n2=bishop(bishop_loca)
-    else:
-        n2=0
 
-    if rook_loca!=None:
-        n3=rook(rook_loca)
-    else:
-        n3=0
 
-    if queen_loca!=None:
-        n4=queen(queen_loca)
-    else:
-        n4=0
+
+
+    if k==1 and c==0:
+
+        for i in range(len(rows)):
+            if 'P' in rows[i]:
+                pawn(pawn_loca)
+        for j in range(len(rows)):
+            if 'B' in rows[j]:
+                bishop(bishop_loca)
+        for i in range(len(rows)):
+            if 'R' in rows[i]:
+                rook(rook_loca)
+        for i in range(len(rows)):
+            if 'Q' in rows[i]:
+                queen(queen_loca)
+
+
+
+        if pawn_loca!=None:
+            n1=pawn(pawn_loca)
+        else:
+            n1=0
+
+        if bishop_loca!=None:
+            n2=bishop(bishop_loca)
+        else:
+            n2=0
+
+        if rook_loca!=None:
+            n3=rook(rook_loca)
+        else:
+            n3=0
+
+        if queen_loca!=None:
+            n4=queen(queen_loca)
+        else:
+            n4=0
     # if bishop(bishop_loca)>0 or rook(rook_loca)>0 or queen(queen_loca)>0 or pawn(pawn_loca):
     #     print("Success")
-    if n1>0 or n2>0 or n3>0 or n4>0:
-        print("Success")
-    else:
-        print("Fail")
+        if n1>0 or n2>0 or n3>0 or n4>0:
+            print("Success")
+        else:
+            print("Fail")
+
+
+    elif k>1:
+        print("k big")
+
+    elif c!=0:
+        print("square!!!")
 
