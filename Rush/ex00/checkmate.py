@@ -1,4 +1,11 @@
+def print_color(message, color=""):
+    reset = '\033[0m'
+    print(f"{color}{message}{reset}")
 
+def print_error(message):
+    color = '\033[33m'
+    reset = '\033[0m'
+    print(f"{color}{message}{reset}")
 
 def checkmate(board):
     rows = board.splitlines()
@@ -13,7 +20,7 @@ def checkmate(board):
             break
     
     if not king_pos:
-        print("ksmall")
+        print_error("ksmall")
         return
 
     bishop_loca=None
@@ -472,19 +479,16 @@ def checkmate(board):
     # if bishop(bishop_loca)>0 or rook(rook_loca)>0 or queen(queen_loca)>0 or pawn(pawn_loca):
     #     print("Success")
         if n1>0 or n2>0 or n3>0 or n4>0:
-            print("Success")
+            print_color("Success", "\033[32m")
         else:
-            print("Fail")
+            print_color("Fail", "\033[31m")
              
 
     elif k>1:
-        print("k big")
+        print_error("k big")
         return
     elif c!=0:
-        print("อย่าแซ่มแล่ม")
+        print_error("อย่าแซ่มแล่ม")
         return
     elif c2!=0:
-        print("Square!!")
-    
-
-
+        print_error("Square!!")

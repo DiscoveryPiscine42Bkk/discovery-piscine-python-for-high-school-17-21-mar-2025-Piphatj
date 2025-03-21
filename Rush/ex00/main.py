@@ -7,6 +7,7 @@ def main():
 ..KR
 ..P.\
 """
+    print(board)
     checkmate(board)
 
 if __name__ == "__main__":
